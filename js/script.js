@@ -92,7 +92,7 @@ const optArticleSelector = '.post',
 
 generateTitleLinks();
 
-
+/* Tags */
 
 {
   function generateTags(){
@@ -162,7 +162,6 @@ function tagClickHandler(event){
   }
   /* execute function "generateTitleLinks" with article selector as argument */
   generateTitleLinks('[data-tags~="' + tag + '"]');
-  
 }
 
 function addClickListenersToTags(){
@@ -177,3 +176,67 @@ function addClickListenersToTags(){
 }
 
 addClickListenersToTags();
+
+/* Authors */
+
+{
+  function generateAuthors() {
+    const articles = document.querySelectorAll('article');
+    let authorsList = document.getElementById('authors');
+    console.log(authorsList)
+    let aList = [];
+    for (let i=0; i  < articles.length; i++) {
+      const articleAuthor = articles[i].getAttribute('data-author');
+      console.log(articleAuthor)
+      
+      const authorWrapper = articles[i].querySelector('.post-author');
+      console.log(authorWrapper)
+      
+      authorWrapper.innerHTML = '<a href="#">by ' + articleAuthor + '</a>';
+
+      
+      if ( !aList.includes(articleAuthor )) {
+        aList.push(articleAuthor)
+      }
+      
+    }
+    for (let author of aList) {
+      authorsList.innerHTML = authorsList.innerHTML + '<li><a href="author-' + author + '">' + author + '</a></li>';
+    }
+  }
+  generateAuthors();
+
+  function authorClickHandler(event) {
+    event.preventDefault();
+
+    const href = this.getAttribute('href');
+
+    const author = href.split('author-')[1]
+
+    const activeAuthorLinks = document.querySelectorAll('a.active[href^="author-"]');
+
+    for (let author of activeAuthorLinks) {
+      author.classList.remove('active');
+    }
+
+    const authors = document.querySelectorAll(`a[href^="${href}"]`)
+
+    for (let author of authors) {
+      author.classList.add('active')
+    }
+
+    generateTitleLinks('[data-author="' + author + '"]');
+  }
+
+  function addClickListenersToAuthors() {
+    const authorLinks = document.querySelectorAll('a[href^="author-"]');
+
+    for (let link of authorLinks) {
+      link.addEventListener('click', authorClickHandler)
+    }
+  }
+  addClickListenersToAuthors()
+
+}
+
+console.log(document.querySelectorAll('a[href^="author-"]'))
