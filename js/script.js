@@ -192,7 +192,7 @@ addClickListenersToTags();
       const authorWrapper = articles[i].querySelector('.post-author');
       console.log(authorWrapper)
       
-      authorWrapper.innerHTML = '<a href="#">by ' + articleAuthor + '</a>';
+      authorWrapper.innerHTML = '<a href="author-' + articleAuthor + '">by ' + articleAuthor + '</a>';
 
       
       if ( !aList.includes(articleAuthor )) {
