@@ -245,7 +245,7 @@ addClickListenersToTags();
     const articles = document.querySelectorAll('article');
     let authorsList = document.getElementById('authors');
     // console.log(authorsList)
-    let aList = [];
+    let aList =  [];
     for (let i=0; i  < articles.length; i++) {
       const articleAuthor = articles[i].getAttribute('data-author');
       // console.log(articleAuthor)
@@ -262,9 +262,14 @@ addClickListenersToTags();
       }
       
     }
+    const listObject = {authors: []}
     for (let author of aList) {
-      authorsList.innerHTML = authorsList.innerHTML + '<li><a href="#author-' + author + '">' + author + '</a></li>';
+      listObject.authors.push({
+        author: author
+      })
     }
+    authorsList.innerHTML = templates.authorListLink(listObject)
+    
   }
   generateAuthors();
 
