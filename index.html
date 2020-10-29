@@ -191,6 +191,7 @@
             <aside class="sidebar">
               <h2 class="section-title">Tags</h2>
               <ul class="list tags">
+                
                 <!-- <li><a href="#">design</a> <span>(6)</span></li>
                 <li><a href="#">code</a> <span>(5)</span></li>
                 <li><a href="#">tutorials</a> <span>(4)</span></li>
@@ -198,7 +199,7 @@
                 <li><a href="#">news</a> <span>(6)</span></li> -->
               </ul>
               <h2 class="section-title">Authors</h2>
-              <ul id="authors">
+              <ul id="authors" class='list'>
                 <!-- <li>
                   <a href="#">
                     <span class="author-name">Kitty Toebean</span>
@@ -224,7 +225,34 @@
           </main>
         </div>
       </div>
+      
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.0/handlebars.min.js"></script>
+
+      <script id="template-tag-cloud-link" type="text/x-handlebars-template">
+        {{#each tags}}
+        <span><a href="tag-{{tag}}" class="{{className}}">{{ tag }}</a></span>
+        {{/each}}
+      </script>
+
+      <script id="template-author-list-link" type="text/x-handlebars-template">
+        {{#each authors}}
+        <span><a href="author-{{author}}" >{{ author }}</a></span>
+        {{/each}}
+      </script>
+     
+      <script id="template-tag-link" type="text/x-handlebars-template">
+        <li><a href="{{ id }}">{{ title }}</a></li>
+      </script>
+
+      <script id="template-author-link" type="text/x-handlebars-template">
+        <li><a href="#{{ id }}"><span>{{ title }}</span></a></li>
+      </script>   
+
+      <script id="template-article-link" type="text/x-handlebars-template">
+        <li><a href="#{{ id }}"><span>{{ title }}</span></a></li>
+      </script>
 
       <script src="js/script.js"></script>      
+
 </body>
 </html>
